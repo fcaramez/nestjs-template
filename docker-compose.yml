@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  dev-db:
+  boilerplate:
     image: postgres:${POSTGRES_VERSION}
     ports:
       - ${POSTGRES_DEV_PORT}:5432
@@ -9,8 +9,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB_NAME}
     networks:
-      - ${POSTGRES_NETWORKS_NAME}
-  test-db:
+      - fcaramez
+  test-boilerplate:
     image: postgres:15
     ports:
       - ${POSTGRES_TEST_PORT}:5432
@@ -19,6 +19,6 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB_NAME}
     networks:
-      - ${POSTGRES_NETWORKS_NAME}
+      - fcaramez
 networks:
-  ${POSTGRES_NETWORKS_NAME}:
+  fcaramez:
