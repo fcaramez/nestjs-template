@@ -53,13 +53,17 @@ export class AuthService {
 
       delete newUser.password;
 
-      const authToken = this.signToken(newUser);
+      const authToken = await this.signToken(
+        newUser.id,
+        newUser.email,
+        newUser.username,
+      );
 
       return {
         message: `Welcome, ${username}!`,
         success: true,
         data: { ...newUser },
-        authToken,
+        token: authToken,
       };
     } catch (error: any) {
       throw new BadRequestException({
@@ -95,25 +99,29 @@ export class AuthService {
         });
       }
       delete user.password;
-      const authToken = this.signToken(user);
+
+      const { username, id } = user;
+      const authToken = await this.signToken(id, username, user.email);
+
+      console.log(authToken);
 
       return {
         message: `Welcome back, ${user.username}`,
         success: true,
         data: { ...user },
-        authToken,
+        token: authToken,
       };
     } catch (error) {}
   }
 
-  signToken(userData: {
-    email: string;
-    username: string;
-    id: string;
-  }): Promise<string> {
+  signToken(id: string, email: string, username: string): Promise<string> {
     const payload = {
-      ...userData,
+      username,
+      id,
+      email,
     };
+
+    console.log(this.config.get('JWT_SECRET'));
 
     return this.jwt.signAsync(payload, {
       expiresIn: '12h',
