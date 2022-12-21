@@ -42,6 +42,19 @@ A Boilerplate with Authentication built in for faster development of future apps
 $ pnpm install
 ```
 
+## Getting Started
+
+- Make sure you have [Docker](https://www.docker.com/) installed
+- Create `.env && .env.test` files with proper variables:
+- `POSTGRES_DEV_PORT
+POSTGRES_TEST_PORT
+POSTGRES_USER
+POSTGRES_PASSWORD
+POSTGRES_NETWORKS_NAME
+POSTGRES_DB_NAME
+DATABASE_URl
+JWT_SECRET`
+
 ## Possible Commands
 
 <br/>
