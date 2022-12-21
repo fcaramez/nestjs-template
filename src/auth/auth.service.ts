@@ -90,7 +90,7 @@ export class AuthService {
         },
       });
 
-      const verify = await argon.verify(password, user.password);
+      const verify = await argon.verify(user.password, password);
 
       if (!verify || !user) {
         throw new UnauthorizedException({
@@ -103,15 +103,18 @@ export class AuthService {
       const { username, id } = user;
       const authToken = await this.signToken(id, username, user.email);
 
-      console.log(authToken);
-
       return {
         message: `Welcome back, ${user.username}`,
         success: true,
         data: { ...user },
         token: authToken,
       };
-    } catch (error) {}
+    } catch (error: any) {
+      throw new BadRequestException({
+        message: error?.message || 'An error has occurred',
+        success: false,
+      });
+    }
   }
 
   signToken(id: string, email: string, username: string): Promise<string> {
@@ -120,8 +123,6 @@ export class AuthService {
       id,
       email,
     };
-
-    console.log(this.config.get('JWT_SECRET'));
 
     return this.jwt.signAsync(payload, {
       expiresIn: '12h',
