@@ -20,7 +20,15 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prestart": "format",
-    "dev:db:run": "docker compose up boilerplate -d"
+    "db:dev:rm": "docker compose rm dev-db -s -f -v ",
+    "db:dev:up": "docker compose up dev-db -d",
+    "db:dev:restart": "pnpm run db:dev:rm && pnpm run db:dev:up && sleep 1 && pnpm run prisma:dev:deploy",
+    "db:test:rm": "docker compose rm test-db -s -f -v ",
+    "db:test:up": "docker compose up test-db -d",
+    "prisma:dev:deploy": "prisma migrate deploy",
+    "db:test:restart": "pnpm run db:test:rm && pnpm run db:test:up && sleep 1 && pnpm run prisma:test:deploy",
+    "prisma:test:deploy": "dotenv -e .env.test -- prisma migrate deploy",
+    "pretest:e2e": "pnpm run db:test:restart"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
