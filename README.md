@@ -24,25 +24,62 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+A Boilerplate with Authentication built in for faster development of future apps.
+
+## Technologies used
+
+- Docker
+- Class Validator
+- pnpm
+- Argon
+- JWT
+- Prisma
+- Passport
 
 ## Installation
 
 ```bash
-$ npm install
+$ pnpm install
 ```
 
-## Running the app
+## Possible Commands
+
+<br/>
+
+Building the app:
 
 ```bash
-# development
-$ npm run start
+$ pnpm run build
+```
 
-# watch mode
-$ npm run start:dev
+Running the app:
 
-# production mode
-$ npm run start:prod
+```bash
+$ pnpm run watch
+```
+
+Running the app in watch mode:
+
+```bash
+$ pnpm run watch:dev
+```
+
+Starting Docker Image:
+
+```bash
+$ pnpm run db:dev:up
+```
+
+Deleting Database instance:
+
+```bash
+$ pnpm run db:dev:rm
+```
+
+Restarting DB:
+
+```bash
+$ pnpm run db:dev:restart
 ```
 
 ## Test
@@ -64,9 +101,10 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- NestJS Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- NestJS Website - [https://nestjs.com](https://nestjs.com/)
+- NestJS Twitter - [@nestframework](https://twitter.com/nestframework)
+- LinkedIn - [fcaramez](https://www.linkedin.com/in/fcaramez/)
 
 ## License
 
